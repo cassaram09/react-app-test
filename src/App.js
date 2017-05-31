@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { data } from './data.js'
+import Complaints from './components/complaints'
 
 class App extends Component {
   constructor(){
@@ -24,12 +25,10 @@ class App extends Component {
   }
 
   render() {
-    const complaints = this.state.complaints.map( (complaint, index) =>{
-      return <div key={index}> {complaint.Status} </div>
-    })
+    
     return (
       <div className="App">
-        {complaints}
+        <Complaints complaints={this.state.complaints} />
       </div>
     );
   }
