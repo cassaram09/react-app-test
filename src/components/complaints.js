@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Complaint from './complaint'
+import ComplaintInput from './complaintInput'
 
 class Complaints extends Component {
   render() {
@@ -15,6 +16,7 @@ class Complaints extends Component {
     ))
     return (
       <div className="complaints">
+        <ComplaintInput />
         {complaints}
       </div>
     );
