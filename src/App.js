@@ -7,7 +7,7 @@ import { data } from './data.js'
 
 import Complaints from './complaints/complaints'
 import { addComplaint } from './complaints/complaint_actions'
-import GoogleMap from './map/map_component'
+import MapComponent from './map/map_component'
 
 
 class App extends Component {
@@ -37,7 +37,7 @@ class App extends Component {
     
     return (
       <div className="App">
-        <GoogleMap />
+        <MapComponent complaints={this.props.complaints}/>
         <Complaints complaints={this.props.complaints} />
       </div>
     );

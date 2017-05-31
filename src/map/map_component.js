@@ -32,12 +32,25 @@ const locations = [
   {position: {lat: -43.999792, lng: 170.463352}}
 ]
 
-function MapComponent({googleMaps}) {
+class MapComponent extends React.Component {
 
+  constructor(props){
+    super(props)
+  }
+
+  componentWillMount(){
+
+  }
+
+  componentWillReceiveProps(nextProps){
+    
+  }
+  
+  render(){
     return (
       <div className="map">
         <GoogleMap
-          googleMaps={googleMaps}
+          googleMaps={this.props.googleMaps}
           coordinates={locations}
           center={{lat: -31.563910, lng: 147.154312 }}
           zoom={4}
@@ -47,6 +60,7 @@ function MapComponent({googleMaps}) {
         />
       </div>
     )
+  }
 }
  
 MapComponent.propTypes = {

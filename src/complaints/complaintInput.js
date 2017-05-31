@@ -9,17 +9,23 @@ class ComplaintInput extends Component {
     super(props)
 
     this.state = {
-      complaint_number: ''
+      house_number: '',
+      house_street: '',
+      zip_code: ''
     }
   }
 
   handleChange(e){
-    this.setState({complaint_number: e.target.value})
+    this.setState({[e.target.name]: e.target.value})
   }
 
   handleSubmit(e){
     e.preventDefault();
-    this.setState({complaint_number: ''})
+    this.setState({
+      house_number: '',
+      house_street: '',
+      zip_code: ''
+    })
     this.props.addComplaint(this.state)
   }
 
@@ -28,9 +34,17 @@ class ComplaintInput extends Component {
     return (
       <div className="complaint-input">
         <form onSubmit={ (event) => this.handleSubmit(event) }>
-          <input type="text" value={this.state.complaint_number} onChange={ (event) => this.handleChange(event) }/>
+          <label>House Number</label>
+          <input type="text" name="house_number" value={this.state.house_number} onChange={ (event) => this.handleChange(event) }/>
+          <label>House Street</label>
+          <input type="text" name="house_street" value={this.state.house_street } onChange={ (event) => this.handleChange(event) }/>
+          <label>Zip Code</label>
+          <input type="text" name="zip_code" value={this.state.zip_code} onChange={ (event) => this.handleChange(event) }/>
+          <input type="submit"/>
         </form>
-        {this.state.number}
+        {this.state.house_number}
+        {this.state.house_street}
+        {this.state.zip_code}
       </div>
     );
   }
