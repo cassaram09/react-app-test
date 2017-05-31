@@ -5,8 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import manageComplaints from './reducers/manageComplaints'
-
+import manageComplaints from './complaints/manageComplaints'
 
 export const configureStore = () => {
   return createStore(manageComplaints, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())

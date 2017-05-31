@@ -7,11 +7,11 @@ class Complaints extends Component {
     const complaints = this.props.complaints.map( (complaint, index) => (
       <Complaint 
         key={index} 
-        complaint_number={complaint["Complaint Number"]}
-        status={complaint.Status}
-        house_number={complaint["House Number"]}
-        zip_code={complaint["ZIP Code"]}
-        house_street={complaint["House Street"]}
+        complaint_number={complaint.complaint_number}
+        status={complaint.status}
+        house_number={complaint.house_number}
+        zip_code={complaint.zip_code}
+        house_street={complaint.house_street}
         />
     ))
     return (
