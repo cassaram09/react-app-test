@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators} from 'redux'
 import logo from './logo.svg';
 import './App.css';
 import { data } from './data.js'
+
 import Complaints from './complaints/complaints'
 import { addComplaint } from './complaints/complaint_actions'
-import { connect } from 'react-redux'
-import { bindActionCreators} from 'redux'
+import GoogleMap from './map/map_component'
 
 
 class App extends Component {
@@ -35,6 +37,7 @@ class App extends Component {
     
     return (
       <div className="App">
+        <GoogleMap />
         <Complaints complaints={this.props.complaints} />
       </div>
     );
