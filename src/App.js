@@ -3,16 +3,32 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super()
+
+    this.state={
+      complaints: []
+    }
+  }
+
+  componentDidMount(){
+    fetch('https://data.cityofnewyork.us/resource/muk7-ct23.json?$$app_token=zA2KvXZaMng7Jr0mNekDIChOA').then(
+      response =>{
+        console.log(response)
+        return response.json()
+      }).then( response => {
+        console.log(response)
+        this.setState({complaints: response})
+      })
+  }
+
   render() {
+    const complaints = this.state.complaints.map( (complaint, index) =>{
+      return <div key={index}> {complaint.status} </div>
+    })
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        {complaints}
       </div>
     );
   }
