@@ -1,6 +1,6 @@
-// import { Promise } from 'es6-promise';
-// import { google } from 'react-google-maps';
-// import { findDOMNode } from 'react-dom';
+// import { Promise } from 'es6promise';
+// import { google } from 'reactgooglemaps';
+// import { findDOMNode } from 'reactdom';
 
 // function codeAddress(address) {
 //   return new Promise(function(resolve, reject){
@@ -31,12 +31,12 @@
 //   // var marker = new google.maps.Marker({
 //   //   position: coordinates,
 //   //   map: map
-//   // });  
+//   // });
 // }
 
 // function parseCoordinates(response){
 //   // return coordinates = {
-//   //   lat: response[0].geometry.location.lat(), 
+//   //   lat: response[0].geometry.location.lat(),
 //   //   lng: response[0].geometry.location.lng()
 //   // }
 // }
