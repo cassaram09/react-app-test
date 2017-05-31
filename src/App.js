@@ -15,7 +15,8 @@ class App extends Component {
     super()
 
     this.state = {
-      complaints: []
+      complaints: [],
+      locations: []
     }
   }
 
@@ -37,7 +38,7 @@ class App extends Component {
     
     return (
       <div className="App">
-        <MapComponent complaints={this.props.complaints}/>
+        <MapComponent locations={this.props.locations}/>
         <Complaints complaints={this.props.complaints} />
       </div>
     );
@@ -46,7 +47,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    complaints: state.complaints
+    complaints: state.complaints,
+    locations: state.locations
   }
 }
 

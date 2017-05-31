@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { addComplaint } from './complaint_actions'
+import { addComplaint, addMarker} from './complaint_actions'
 import { connect } from 'react-redux'
 import { bindActionCreators} from 'redux'
-import { google } from 'react-google-map';
-import { Promise } from 'es6-promise';
+import google from 'react-google-map';
+import { prom } from 'react-promise'
 
+const MY_API_KEY = "AIzaSyB89mW-vaS_-rfGylcHqyHBd_i3pRyM1hY"
 
 
 class ComplaintInput extends Component {
@@ -18,32 +19,40 @@ class ComplaintInput extends Component {
     }
   }
 
-  codeAddress(address) {
-    return new Promise(function(resolve, reject){
-      var geocoder = new google.maps.Geocoder();
-      geocoder.geocode( { 'address' : address }, function( results, status ) {
-        if( status == google.maps.GeocoderStatus.OK ) {
+  componentWillMount(){
+    
+  }
 
+  codeAddress(geocoder, address) {
+    let prom = new Promise(function(resolve, reject){
+      var geocoder = new window.google.maps.Geocoder();
+      console.log('geocoder created')
+      geocoder.geocode( { 'address' : address }, function( results, status ) {
+        if( status == window.google.maps.GeocoderStatus.OK ) {
+           console.log('conversion success')
           resolve( results )
         } else {
+           console.log('error')
           reject( 'Geocode was not successful for the following reason: ' + status  )
         }
       });
     });
+    return prom;
   }
 
   parseCoordinates(response){
     return {
-      lat: response[0].geometry.location.lat(), 
-      lng: response[0].geometry.location.lng()
+      lat: response[4].geometry.location.lat(), 
+      lng: response[4].geometry.location.lng()
     }
   }
 
   getLocation(house, street, zip){
     var address = `${house} ${street}, ${zip}`;
-    this.codeAddress(address).then(function(response){
+    this.codeAddress(address).then( (response) => {
+      console.log(response)
       var coordinates = this.parseCoordinates(response);
-      console.log(coordinates)
+      this.props.addMarker(coordinates)
     })
   }
 
@@ -54,7 +63,8 @@ class ComplaintInput extends Component {
   handleSubmit(e){
     e.preventDefault();
     const {house_number, house_street, zip_code} = this.state;
-    
+
+
     this.getLocation(house_number, house_street, zip_code);
 
     this.props.addComplaint(this.state)
@@ -95,7 +105,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({
-    addComplaint
+    addComplaint, addMarker
   }, dispatch)
 }
 
