@@ -6,9 +6,13 @@ import './App.css';
 import { data } from './data.js'
 
 import Complaints from './complaints/complaints'
-import { addComplaint } from './complaints/complaint_actions'
 import MapComponent from './map/map_component'
 
+import { addComplaint } from './complaints/complaint_actions'
+import { addMarker } from './map/map_actions'
+
+
+window.data = data
 
 class App extends Component {
   constructor(){
@@ -20,7 +24,7 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
     // fetch('https://data.cityofnewyork.us/resource/muk7-ct23.json?$$app_token=zA2KvXZaMng7Jr0mNekDIChOA').then(
     //   response =>{
     //     console.log(response)
@@ -29,13 +33,14 @@ class App extends Component {
     //     console.log(response)
     //     this.setState({complaints: response})
     //   })
-    data.forEach( complaint => (
+
+    window.data.forEach( complaint => {
       this.props.addComplaint(complaint)
-    ))
+    })
+    debugger
   }
 
   render() {
-    
     return (
       <div className="App">
         <MapComponent locations={this.props.locations}/>

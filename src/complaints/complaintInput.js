@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { addComplaint, addMarker} from './complaint_actions'
+import { addComplaint } from './complaint_actions'
+import { addMarker } from '../map/map_actions'
 import { connect } from 'react-redux'
 import { bindActionCreators} from 'redux'
 import google from 'react-google-map';

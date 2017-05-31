@@ -5,13 +5,6 @@ const addComplaint = (complaint) => {
   };
 };
 
-const addMarker= (coordinates) => {
-  return {
-    type: 'ADD_MARKER', 
-    location: coordinates
-  };
-};
-
 export {
-  addComplaint, addMarker
+  addComplaint
 }
