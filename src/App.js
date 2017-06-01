@@ -11,9 +11,6 @@ import MapComponent from './map/map_component'
 import { addComplaint } from './complaints/complaint_actions'
 import { addMarker } from './map/map_actions'
 
-
-window.data = data
-
 class App extends Component {
   constructor(){
     super()
@@ -34,10 +31,9 @@ class App extends Component {
     //     this.setState({complaints: response})
     //   })
 
-    window.data.forEach( complaint => {
+    data.forEach( complaint => {
       this.props.addComplaint(complaint)
     })
-    debugger
   }
 
   render() {

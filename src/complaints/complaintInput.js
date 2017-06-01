@@ -24,7 +24,7 @@ class ComplaintInput extends Component {
     
   }
 
-  codeAddress(geocoder, address) {
+  codeAddress(address) {
     let prom = new Promise(function(resolve, reject){
       var geocoder = new window.google.maps.Geocoder();
       console.log('geocoder created')
@@ -43,13 +43,13 @@ class ComplaintInput extends Component {
 
   parseCoordinates(response){
     return {
-      lat: response[4].geometry.location.lat(), 
-      lng: response[4].geometry.location.lng()
+      lat: response[0].geometry.location.lat(), 
+      lng: response[0].geometry.location.lng()
     }
   }
 
   getLocation(house, street, zip){
-    var address = `${house} ${street}, ${zip}`;
+    var address = `${house} ${street}, New York ${zip}, USA`;
     this.codeAddress(address).then( (response) => {
       console.log(response)
       var coordinates = this.parseCoordinates(response);
